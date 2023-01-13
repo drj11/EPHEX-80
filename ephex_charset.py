@@ -2853,6 +2853,8 @@ widths = [
  12, # 255
 ]
 
+# In the PDF of the manual available from Epson https://files.support.epson.com/pdf/fx80__/fx80__u1.pdf
+# some of the character widths do not appear:
 # 64: I don't know what it's supposed to be.  I guessed 12.
 # 91/93: I don't know these (looks like "a")
 # 105/108: I don't know (looks like "a")
