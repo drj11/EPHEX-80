@@ -2570,17 +2570,19 @@ def _fix ():
   for char_num, char in enumerate(_raw):
     c = []
     char = char.split("\n")
-    shift = 1
+  
+    # Convert to pin format: 9-bit integers (9-pin printer),
+    # one integer value per dot _column_,
+    # with the bottom dot as bit 0
+    assert len(char) == 9
     for i in range(0, 9):
       col = ''.join(row[i] for row in char)
       pins = 0
-      for n,pin in enumerate(col):
+      for n,pin in enumerate(reversed(col)):
         if pin == "#":
-          if n == 8: shift = 0
-          n = 8-n
           pins |= 1 << n
       c.append(pins)
-    c = [cc >> shift for cc in c]
+
     #print ("\t[ " + ("0x80, " if shift == 1 else "0x00, ") +
     #       ', '.join("0x%02X" % (x,) for x in c) + ", 0x00, 0x00" +
     #       (" ],\t# Char 0x%02X" % (char_num)))
